@@ -20,7 +20,7 @@ Além da funcionalidade de geração de senhas, o sistema oferece:
     pip install -r requirements.txt
 3. **Execute o Projeto:** Após instalar as dependências, você pode executar o projeto PassCraft localmente:
     ```bash
-    main.py
+    python main.py
     ```
     O servidor será iniciado e você poderá acessar o PassCraft em seu navegador em http://localhost:5000.
 ### <center> A aplicação </center>
