@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - PassCraft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='components/icons/icone.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-login">
+        <div class="d-flex justify-content-start">
+            <img class="cabecalho-imagem" src="/static/components/images/logo.svg" alt="PassCraft Logo">
+            <h1 class="nome-cabecalho" row><b>PassCraft</b></h1>
+        </div>
+
+    </header>
+
+    <main class="main-login">
+
+        <div id="login-container" class="container text-center">
+            <h1><b>Crie uma conta</b></h1>
+            <div class="row">
+                <div class="col align-self-center">
+                    <form action="/register" method="post" id="login-form" class="col needs-validation" novalidate>
+                        <div class="col">
+                            <label for="nome" class="form-label">
+                                <span>Nome de usuário</span>
+                                <input type="text" class="form-control" id="name" name="nome_usuario">
+                            </label>
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" id="senha" name="senha" class="form-control">
+                        </div>
+                        <input type="submit" value="Criar" id="submit">
+                    </form>
+                    <p>Já tem uma conta? <a href="/login">Login</a></p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </main>
+    <footer class="rodape">
+        <div> Ícones feitos por <a href="https://www.flaticon.com/br/autores/smashicons" title="Smashicons"> Smashicons
+            </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></div>
+        <a href="https://www.flaticon.com/br/icones-gratis/senha" title="senha ícones">Senha ícones criados por
+            Smashicons - Flaticon</a>
+        <div> Design e recursos por <a href="https://www.codingnepalweb.com/" title="CodingNepalWeb">CodingNepalWeb</a>,
+            <a href="https://www.codeinfoweb.com/" title="CodeInfoWeb">CodeInfoWeb</a> e <a
+                href="https://youtu.be/llF6vD-RljE?si=YZuItO9mZnJ1et6f" title="Rafaella Ballerini
+            ">Rafaella Ballerini
+            </a>
+        </div>
+    </footer>
+    <div class="circle"></div>
+    <script></script>
+</body>
+
+</html>

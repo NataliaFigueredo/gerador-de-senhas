@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - PassCraft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Unicon Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='components/icons/icone.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-login">
+        <div class="d-flex justify-content-start">
+            <img class="cabecalho-imagem" src="/static/components/images/logo.svg" alt="PassCraft Logo">
+            <h1 class="nome-cabecalho" row><b>PassCraft</b></h1>
+        </div>
+
+    </header>
+
+    <main class="main-login">
+
+        <div id="login-container" class="container text-center">
+            <form action="/generate-password" method="post" class="card--wrapper">
+                <h1><b>Crie uma senha</b></h1>
+                <div class="senha-nome-box">
+                    <h3 class="main--title">Nome da senha</h3>
+                    <input type="text" name="senha_nome" value="{{ senha_nome }}">
+                </div>
+
+                <div class="card--wrapper">
+                    <img src="/static/components/images/logo.svg" alt="PassCraft logo">
+
+                    <div>
+                        <!-- senha gerada -->
+                        <div class="password-box">
+                            <input type="text" name="senha_gerada" value="{{ password }}">
+                            <i class="uil uil-copy copy-icon"></i>
+                        </div>
+                        <!-- range quantidade de caracteres -->
+                        <div class="range-box">
+                            <input type="range" id="tamanho" name="tamanho" min="6" max="40"
+                                value="{{ tamanho_range }}" />
+                            <span class="slider-number">{{ tamanho_range }}</span>
+                        </div>
+                        <!-- opções da senha -->
+                        <div class="options-box">
+                            <input type="checkbox" id="maius" name="maius" {{ maius_checked }}><label
+                                for="mauis">ABC</label>
+                            <input type="checkbox" id="minus" name="minus" {{ minus_checked }}><label
+                                for="minus">abc</label>
+                            <input type="checkbox" id="especial" name="especial" {{ especial_checked }}><label
+                                for="especial">#&$</label>
+                            <input type="checkbox" id="numeros" name="numeros" {{ numeros_checked }}><label
+                                for="numeros">123</label>
+                        </div>
+                    </div>
+                    <button id="gerar-senha" type="submit" name="action" value="gerar-senha"
+                        class="btn btn-secondary btn-lg btn-interno">Gerar
+                        senha</button>
+                    <button id="salvar-senha" type="submit" name="action" value="salvar-senha"
+                        class="btn btn-secondary btn-lg salvar-senha btn-interno">Salvar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </main>
+    <footer class="rodape">
+        <div> Ícones feitos por <a href="https://www.flaticon.com/br/autores/smashicons" title="Smashicons"> Smashicons
+            </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></div>
+        <a href="https://www.flaticon.com/br/icones-gratis/senha" title="senha ícones">Senha ícones criados por
+            Smashicons - Flaticon</a>
+        <div> Design e recursos por <a href="https://www.codingnepalweb.com/" title="CodingNepalWeb">CodingNepalWeb</a>,
+            <a href="https://www.codeinfoweb.com/" title="CodeInfoWeb">CodeInfoWeb</a> e <a
+                href="https://youtu.be/llF6vD-RljE?si=YZuItO9mZnJ1et6f" title="Rafaella Ballerini
+            ">Rafaella Ballerini
+            </a>
+        </div>
+    </footer>
+    <div class="circle"></div>
+    <script>
+        const passwordInput = document.querySelector(".password-box input"),
+            copyIcon = document.querySelector(".password-box .copy-icon"),
+            rangeInput = document.querySelector(".range-box input"),
+            sliderNumber = document.querySelector(".range-box .slider-number");
+
+        rangeInput.addEventListener("input", () => {
+            sliderNumber.innerText = rangeInput.value;
+            generatePassword();
+        });
+        copyIcon.addEventListener("click", () => {
+
+            navigator.clipboard.writeText("{{ password }}");
+            copyIcon.classList.replace("uil-copy", "uil-file-check-alt"); //replace icon
+        });
+
+    </script>
+    <!--
+        <script>
+        const passwordInput = document.querySelector(".password-box input"),
+            copyIcon = document.querySelector(".password-box .copy-icon"),
+            rangeInput = document.querySelector(".range-box input"),
+            sliderNumber = document.querySelector(".range-box .slider-number"),
+            generateButton = document.querySelector(".generate-button");
+
+        //Characters of alphabet(a-z/A-Z), numbers(0-9) and Symbols($%&[]...)
+        let allCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789^!$%&|[](){}:;.,*+-#@<>~";
+
+        //this function will be called on, page reload, generateButton clicked & rangeInput slide
+        const generatePassword = () => {
+            let newPassword = "";
+
+            //for loop will run till rangeInput value
+            for (let i = 0; i < rangeInput.value; i++) {
+                let randomNumbers = Math.floor(Math.random() * allCharacters.length);
+                newPassword += allCharacters[randomNumbers];
+            }
+            passwordInput.value = newPassword;
+            copyIcon.classList.replace("uil-file-check-alt", "uil-copy"); //replace icon
+        };
+
+        rangeInput.addEventListener("input", () => {
+            sliderNumber.innerText = rangeInput.value;
+            generatePassword();
+        });
+
+        //copy passInput's value on copyIcon click
+        //copy passInput's value on copyIcon click
+        copyIcon.addEventListener("click", () => {
+            navigator.clipboard.writeText(passwordInput.value);
+            copyIcon.classList.replace("uil-copy", "uil-file-check-alt"); //replace icon
+        });
+
+        generatePassword();
+        generateButton.addEventListener("click", generatePassword);
+    </script>
+    -->
+</body>
+
+</html>

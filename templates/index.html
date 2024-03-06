@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassCraft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='components/icons/icone.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <header class="header-landig-page">
+        <div class="d-flex justify-content-start">
+            <img class="cabecalho-imagem" src="/static/components/images/logo.svg" alt="PassCraft Logo">
+            <h1 class="nome-cabecalho" row><b>PassCraft</b></h1>
+        </div>
+        <a href="/register">
+            <button id="botao-roxo" type="button" class="btn btn-secondary btn-lg btn-interno">Criar uma conta?</button>
+        </a>
+    </header>
+
+
+
+
+    <main id="main-landing-page"><!--class="container text-center"-->
+
+        <section class="conteudo-principal">
+            <div class="card--wrapper">
+                <div class="conteudo-principal-escrito">
+                    <h1 class="conteudo-principal-escrito-titulo"><b>PassCraft</b></h1>
+                    <h2 class="conteudo-principal-escrito-subtitulo">Gere senhas seguras e do seu jeito!</h2>
+                    <h3 class="conteudo-principal-escrito-subtitulo-2">Gerar senhas mais fortes é uma prática
+                        fundamental
+                        para manter a segurança na era digital.</h3>
+                    <a href="/gerar-senha">
+                        <button type="button" class="btn btn-primary" id="conteudo-principal-escrito-botao">
+                            Gerar uma senha
+                        </button>
+                    </a>
+
+                </div>
+                <img class="conteudo-principal-imagem" src="/static/components/images/logo.svg" alt="Logo PassCraft">
+            </div>
+        </section>
+
+        <section class="conteudo-secundario">
+            <h3 class="conteudo-secundario-titulo"><b>Por quê usar um gerador de senhas?</b></h3>
+
+            <p class="conteudo-secundario-paragrafo">1. Senhas fortes são mais difíceis de serem adivinhadas ou
+                quebradas por hackers</p>
+            <p class="conteudo-secundario-paragrafo">
+                2. Senhas fracas podem permitir que invasores acessem suas informações pessoais,<br> como e-mails,
+                contas bancárias, mídias sociais e informações confidenciais.
+            </p>
+            <p class="conteudo-secundario-paragrafo">
+                3. É menos provável que criminosos cibernéticos consigam se passar por você e cometer fraudes em seu
+                nome.
+            </p>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div> Ícones feitos por <a href="https://www.flaticon.com/br/autores/smashicons" title="Smashicons"> Smashicons
+            </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a>
+        </div>
+        <a href="https://www.flaticon.com/br/icones-gratis/senha" title="senha ícones">
+            Senha ícones criados porSmashicons - Flaticon</a>
+        <div> Design e recursos por <a href="https://www.codingnepalweb.com/" title="CodingNepalWeb">CodingNepalWeb</a>,
+            <a href="https://www.codeinfoweb.com/" title="CodeInfoWeb">CodeInfoWeb</a> e <a
+                href="https://youtu.be/llF6vD-RljE?si=YZuItO9mZnJ1et6f" title="Rafaella Ballerini
+            ">Rafaella Ballerini
+            </a>
+        </div>
+    </footer>
+
+    <div class="circle"></div>
+
+    <script></script>
+</body>
+
+</html>

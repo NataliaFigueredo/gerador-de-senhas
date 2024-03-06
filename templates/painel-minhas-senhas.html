@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassCraft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='components/icons/icone.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-login">
+        <div class="d-flex justify-content-start">
+            <img class="cabecalho-imagem" src="/static/components/images/logo.svg" alt="PassCraft Logo">
+            <h1 class="nome-cabecalho" row><b>PassCraft</b></h1>
+        </div>
+    </header>
+
+    <main class="painel-main">
+        <div class="menu-lateral">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li class="active">
+                    <a href="#">
+                        <img src="/static/components/images/cadeado_senha.png" alt="PassCraft Logo">
+                        <span>Minhas senhas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/painel-gerar-senhas">
+                        <img src="/static/components/images/caderno.png" alt="PassCraft Logo">
+                        <span>Gerar senha</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <img src="/static/components/images/lixeira_azul.png" alt="PassCraft Logo">
+                        <span data-bs-toggle="modal" data-bs-target="#apagarModal">
+                            Apagar conta
+                        </span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a>
+                        <img src="/static/components/images/sair-rosa2.png" alt="PassCraft Logo">
+                        <span data-bs-toggle="modal" data-bs-target="#sairModal">
+                            Sair
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="main--content">
+            <div class="header--wrapper">
+                <div class="header--title">
+                    <span>Minhas</span>
+                    <h2>Senhas</h2>
+                </div>
+                <div class="user--info">
+                    <div>
+                        <span><span>Olá,</span>
+                        </span>
+                    </div>
+                    <div>
+                        <span><b>
+                                <h3>{{ nome_usuario }}</h3>
+                            </b></span>
+                    </div>
+                </div>
+            </div>
+            {% for nome_senha, senha in dict_senhas.items() %}
+            <form method="POST" action="/painel-minhas-senhas">
+                <input type="hidden" name="nome_senha_selecionado" value="{{ nome_senha }}">
+                <div class="card--container">
+                    <h3 class="main--title">{{ nome_senha }}</h3>
+                    <div class="card--wrapper">
+                        <div class="form-check form-switch form-check-reverse">
+                            <label class="form-check-label" for="showPassword_{{ nome_senha }}">
+                                <input id="password_{{ nome_senha }}" class="form-control" type="password"
+                                    value="{{ senha }}" name="password" disabled>
+                            </label>
+                            <input class="form-check-input" type="checkbox" id="showPassword_{{ nome_senha }}"
+                                onclick="mostrarSenha(this)">
+                        </div>
+                        <button id="botao-roxo_{{ nome_senha }}" type="submit" name="action" value="apagar"
+                            class="btn btn-secondary btn-interno">Apagar</button>
+                        <button id="botao-editar_{{ nome_senha }}" type="button" class="btn btn-secondary btn-interno"
+                            onclick="editarSenha(this)">Editar</button>
+                        <button id="botao-salvar_{{ nome_senha }}" type="submit" name="action" value="salvar"
+                            class="btn btn-secondary btn-interno">Salvar</button>
+                    </div>
+                </div>
+            </form>
+            {% endfor %}
+
+            <!-- <div class="card--container">
+                <h3 class="main--title">Nome da senha</h3>
+                <div class="card--wrapper">
+                    <div class="form-check form-switch form-check-reverse">
+                        <label class="form-check-label" for="switch">
+                            <input id="local-senha" class="form-control" type="password" value="Sua_senha_aqui"
+                                id="myInput" disabled>
+                        </label>
+                        <input class="form-check-input" type="checkbox" id="switch">
+                    </div>
+                    <button id="botao-roxo" type="button" class="btn btn-secondary btn-lg">Apagar</button>
+                </div>
+            </div> -->
+        </div>
+
+
+        <!--<div id="painel-container" class="container text-center">
+            <div>
+                <p><b>Texto qualquer</b></p>
+            </div>
+            <div id="painel-conteudo" class="row">
+                <div class="col align-self-center">
+                    <p>oaisaoisas</p>
+                    <p>Ainda não tem uma conta? <a href="register.html">Criar conta</a></p>
+                </div>
+            </div>
+
+        </div> -->
+
+    </main>
+    <footer class="rodape">
+        <div> Ícones feitos por <a href="https://www.flaticon.com/br/autores/smashicons" title="Smashicons"> Smashicons
+            </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></div>
+        <a href="https://www.flaticon.com/br/icones-gratis/senha" title="senha ícones">Senha ícones criados por
+            Smashicons - Flaticon</a>
+        <div> Design e recursos por <a href="https://www.codingnepalweb.com/" title="CodingNepalWeb">CodingNepalWeb</a>,
+            <a href="https://www.codeinfoweb.com/" title="CodeInfoWeb">CodeInfoWeb</a> e <a
+                href="https://youtu.be/llF6vD-RljE?si=YZuItO9mZnJ1et6f" title="Rafaella Ballerini
+            ">Rafaella Ballerini
+            </a>
+        </div>
+    </footer>
+    <div class="circle"></div>
+    <!-- Modal -->
+    <div class="modal fade" id="apagarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Excluir sua conta na PassCraft?
+                </div>
+                <form action="/delete_account">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button class="btn btn-primary" type="submit">Sim</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="sairModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Sair da conta na PassCraft?
+                </div>
+                <form action="/logout">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button class="btn btn-primary" type="submit">Sim</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function mostrarSenha(element) {
+            var campoSenha = element.parentElement.querySelector(".form-control");
+
+            if (element.checked) {
+                campoSenha.type = "text";
+            } else {
+                campoSenha.type = "password";
+            }
+        }
+        function editarSenha(element) {
+            var campoSenha = element.parentElement.querySelector(".form-control");
+            var btnSalvar = element.parentElement.querySelector(".form-control");
+
+            if (campoSenha.disabled) {
+                campoSenha.disabled = false;
+                campoSenha.focus();
+            } else {
+                campoSenha.disabled = true;
+            }
+        }
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     // Selecione o switch
+        //     var showPasswordSwitch = document.getElementById('showPassword');
+
+        //     // Selecione o campo de senha
+        //     var passwordField = document.getElementById('password');
+
+        //     // Adicione um ouvinte de evento para o evento de mudança
+        //     showPasswordSwitch.addEventListener('change', function () {
+        //         // Alterne entre type 'password' e 'text' com base no estado do switch
+        //         passwordField.type = showPasswordSwitch.checked ? 'text' : 'password';
+        //     });
+        // });
+
+    </script>
+
+</body>
+
+</html>
