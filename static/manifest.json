@@ -1,27 +1,42 @@
 {
-    "background_color": "#f7f7fa",
-    "dir": "ltr",
-    "display": "standalone",
     "name": "PassCraft",
-    "orientation": "any",
-    "scope": "/",
     "short_name": "PassCraft",
-    "start_url": "/",
+    "start_url": "https://gerador-de-senhas-4qcw.onrender.com/",
+    "display": "standalone",
+    "description": "A description for your application",
+    "lang": "pt",
+    "dir": "auto",
     "theme_color": "#513873",
+    "background_color": "#F8F8FA",
+    "orientation": "any",
     "icons": [
         {
-            "src": "/static/components/icons/icone.ico",
-            "type": "image/x-icon"
+            "src": "static/components/icons/icone.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
-            "src": "favicon.ico",
-            "type": "image/x-icon"
+            "src": "static/components/icons/icone.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
         }
     ],
-    "description": "Gerador de senhas online.",
-    "lang": "pt",
-    "categories": [
-        "security",
-        "utilities"
+    "screenshots": [
+        {
+            "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
+            "sizes": "2880x1800",
+            "type": "image/png",
+            "description": "A screenshot of the home page"
+        }
+    ],
+    "prefer_related_applications": false,
+    "shortcuts": [
+        {
+            "name": "The name you would like to be displayed for your shortcut",
+            "url": "The url you would like to open when the user chooses this shortcut. This must be a URL local to your PWA. For example: If my start_url is /, this URL must be something like /shortcut",
+            "description": "A description of the functionality of this shortcut"
+        }
     ]
 }
