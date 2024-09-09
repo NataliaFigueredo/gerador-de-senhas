@@ -11,6 +11,13 @@
     <link rel="icon" href="{{ url_for('static', filename='components/icons/icone.ico') }}" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('pwabuilder-sw.js')
+        }
+    </script>
 </head>
 
 <body>
@@ -80,7 +87,7 @@
 
     <div class="circle"></div>
 
-    <script></script>
+
 </body>
 
 </html>
